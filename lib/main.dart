@@ -67,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
         page = const GeneratorPage();
         break;
       case 1:
-        page = const Placeholder();
+        page = const FavoritesPage();
         break;
       case 2:
         page = const Placeholder();
@@ -163,6 +163,30 @@ class GeneratorPage extends StatelessWidget {
               ),
             ],
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class FavoritesPage extends StatelessWidget {
+  const FavoritesPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final appState = context.watch<MyAppState>();
+    final favs = appState.favorites;
+
+    return Padding(
+      padding: const EdgeInsets.all(40.0),
+      child: Column(
+        // mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          for (var fav in favs)
+            ListTile(
+                visualDensity: VisualDensity(vertical: -4),
+                title: Text(fav.asLowerCase)),
         ],
       ),
     );
